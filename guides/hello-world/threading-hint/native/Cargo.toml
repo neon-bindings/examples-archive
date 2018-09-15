@@ -1,17 +1,18 @@
 [package]
 name = "threading-hint"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Dave Herman <david.herman@gmail.com>"]
 license = "Apache-2.0"
 build = "build.rs"
+exclude = ["artifacts.json", "index.node"]
 
 [lib]
 name = "threading_hint"
 crate-type = ["dylib"]
 
 [build-dependencies]
-neon-build = "0.1.17"
+neon-build = "0.2.0"
 
 [dependencies]
-neon = "0.1.17"
+neon = "0.2.0"
 num_cpus = "1.4.0"

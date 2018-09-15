@@ -2,13 +2,12 @@
 extern crate neon;
 extern crate num_cpus;
 
-use neon::vm::{Call, JsResult};
-use neon::js::JsNumber;
+use neon::prelude::*;
 
-fn threading_hint(call: Call) -> JsResult<JsNumber> {
-    Ok(JsNumber::new(call.scope, num_cpus::get() as f64))
+fn threading_hint(mut cx: FunctionContext) -> JsResult<JsNumber> {
+    Ok(JsNumber::new(&mut cx, num_cpus::get() as f64))
 }
 
-register_module!(m, {
-    m.export("threading_hint", threading_hint)
+register_module!(mut cx, {
+    cx.export_function("threading_hint", threading_hint)
 });
